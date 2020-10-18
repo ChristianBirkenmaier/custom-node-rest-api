@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 
-const DB_NAME = "fakeDB.json";
+const DB_NAME = "./db/fakeDB.json";
 
 // const DB = JSON.parse(fs.readFileSync("./fakeDB.json"));
 
 function getDB() {
-    return JSON.parse(fs.readFileSync("./fakeDB.json"));
+    return JSON.parse(fs.readFileSync(DB_NAME));
 }
 
 function saveDB(DB) {

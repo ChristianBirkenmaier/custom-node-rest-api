@@ -1,5 +1,5 @@
 import express from "express";
-import fakeDB from "./fakeDB.mjs";
+import fakeDB from "./db/fakeDB.mjs";
 import Entry from "./Entry.mjs";
 
 const router = express.Router();
@@ -13,9 +13,22 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    const { category, project, fromDate, untilDate, comment } = req.body;
-    const entry = new Entry(category, project, fromDate, untilDate, comment);
-    console.log(entry);
+    const {
+        id,
+        categoryName,
+        projectName,
+        fromDate,
+        untilDate,
+        optionalText,
+    } = req.body;
+    const entry = new Entry(
+        id,
+        categoryName,
+        projectName,
+        fromDate,
+        untilDate,
+        optionalText
+    );
     const savedEntry = fakeDB.insert(entry);
     return res.json(savedEntry);
 });
